@@ -15,7 +15,10 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
     try {
+        const { id } = req.params
+        const car = await db("cars").where({ id }).first()
 
+        res.json(car)
     } catch (err) {
         next(err)
     }
